@@ -1,3 +1,13 @@
+
+- **Objectives:** Investigated factors contributing to patient no-shows for medical appointments.
+
+- **Tools and Technologies:** Used Python, Pandas, and Matplotlib for data analysis and visualization.
+
+- **Strategies and Techniques:** Performed data cleaning, exploratory data analysis, and statistical modeling to identify key trends.
+
+- **Results:** Identified significant predictors of no-shows, providing insights to improve appointment attendance rates.
+
+
 ### Conclusions
 From the information above, it becomes clear that '(Gender ,Diabetes, Alcoholism, Handcap, )has no apparent impact on attendance.
 
