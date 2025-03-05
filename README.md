@@ -7,6 +7,9 @@
 
 - **Results:** Identified significant predictors of no-shows, providing insights to improve appointment attendance rates.
 
+> **No-show appointments**: This dataset collects information from nearly 100,000 medical appointments in Brazil, and focuses on whether or not patients showed up on their appointments.
+> A number of patient characteristics are included in each class (Gender - Age - Scholarships - Hypertension - Diabetes - Alcoholism - Handcap - SMS Received).
+
 
 ### Conclusions
 From the information above, it becomes clear that '(Gender ,Diabetes, Alcoholism, Handcap, )has no apparent impact on attendance.
