@@ -4,6 +4,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import plotly.express as px
 from flask import Flask, jsonify
+import dash.development as dos
 
 # Load and process the dataset
 df = pd.read_csv("noshowappointments.csv")
@@ -26,7 +27,7 @@ df["No_show"] = df["No_show"].str.strip().str.capitalize()  # Ensures "Yes" and 
 
 # Filter only categorical columns for bar chart analysis
 categorical_columns = df.columns.tolist()
-[categorical_columns.remove(x) for x in ["ScheduledDay", "AppointmentDay", "Age", "DaysBetween","No_show"] ]
+[categorical_columns.remove(x) for x in ["ScheduledDay", "AppointmentDay", "Age", "Neighbourhood", "DaysBetween", "No_show"] ]
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
@@ -60,8 +61,7 @@ app.layout = html.Div([
 
         # **Tab 2: Show/No-Show Analysis**
         dcc.Tab(label="Show/No-Show Analysis", children=[
-            html.H3("📊 Show/No-Show Percentage by Variable"),
-            
+            html.H3("📊 Effect of Variables on Attendance/No-show Rate"),
             dcc.Dropdown(
                 id="bar-variable-dropdown",
                 options=[{"label": col, "value": col} for col in categorical_columns],
@@ -91,7 +91,7 @@ def update_charts(selected_neighbourhood):
     
     # Histogram for days between scheduling and appointment
     days_fig = px.histogram(filtered_df, x="DaysBetween", nbins=20,
-                            title=f"Days Between Reservation and Appointment in {selected_neighbourhood}",
+                            title=f"Days Between Reservation and Appointment in '{selected_neighbourhood}'",
                             labels={"DaysBetween": "Days Between"},
                             color_discrete_sequence=["#636EFA"])
     days_fig.update_layout(height=400, width=500)
@@ -99,13 +99,13 @@ def update_charts(selected_neighbourhood):
     # Pie chart for No-show rate
     no_show_counts = filtered_df["No_show"].value_counts()
     no_show_fig = px.pie(names=no_show_counts.index, values=no_show_counts.values,
-                         title=f"No-show Rate in {selected_neighbourhood}",
+                         title=f"No-show Rate in '{selected_neighbourhood}'",
                          color_discrete_map={"Yes": "#EF553B", "No": "#00CC96"})
     no_show_fig.update_layout(height=400, width=500)
     
     # Histogram for age distribution
     age_fig = px.histogram(filtered_df, x="Age", nbins=15,
-                           title=f"Age Distribution in {selected_neighbourhood}",
+                           title=f"Age Distribution in '{selected_neighbourhood}'",
                            labels={"Age": "Age"},
                            color_discrete_sequence=["#FFA15A"])
     age_fig.update_layout(height=400, width=500)
@@ -113,7 +113,7 @@ def update_charts(selected_neighbourhood):
     # Pie chart for gender distribution
     gender_counts = filtered_df["Gender"].value_counts()
     gender_fig = px.pie(names=gender_counts.index, values=gender_counts.values,
-                        title=f"Gender Distribution in {selected_neighbourhood}",
+                        title=f"Gender Distribution in '{selected_neighbourhood}'",
                         color_discrete_sequence=["#AB63FA", "#19D3F3"])
     gender_fig.update_layout(height=400, width=500)
     
@@ -150,9 +150,8 @@ def update_bar_chart(xVar):
         uniformtext_minsize=14, uniformtext_mode='show',
 
         bargap=0.4,
-        height=500, width=1100
+        height=500, width=1300
     )
-    
     return fig
 
 
@@ -165,4 +164,5 @@ def get_data():
 
 # Run the application
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8050)
+
