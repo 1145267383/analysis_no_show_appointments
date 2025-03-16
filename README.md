@@ -3,9 +3,9 @@
 
 - **Tools and Technologies:** Used Python, Pandas, and Matplotlib for data analysis and visualization.
 
-- **Strategies and Techniques:** Performed data cleaning, exploratory data analysis, and statistical modeling to identify key trends.
+- **Strategies and Techniques:** Performed data cleaning, exploratory data analysis, and statistical modeling to identify key trends. Then design dashboard.
 
-- **Results:** Identified significant predictors of no-shows, providing insights to improve appointment attendance rates.
+- **Results:** Identified significant predictors of no-shows, providing insights to improve appointment attendance rates. The dashboard to monitor the change in factors that affect the no-show appointment rate.
 
 > **No-show appointments**: This dataset collects information from nearly 100,000 medical appointments in Brazil, and focuses on whether or not patients showed up on their appointments.
 > A number of patient characteristics are included in each class (Gender - Age - Scholarships - Hypertension - Diabetes - Alcoholism - Handcap - SMS Received).
