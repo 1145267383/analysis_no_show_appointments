@@ -36,7 +36,6 @@ server = app.server  # Required for deployment
 # Define the layout with Tabs
 app.layout = html.Div([
     html.H1("📊 Medical Appointment Data Dashboard", style={'textAlign': 'center'}),
-
     dcc.Tabs([  
         # **Tab 1: General Analysis**
         dcc.Tab(label="General Analysis", children=[
@@ -88,7 +87,6 @@ def update_charts(selected_neighbourhood):
     """Update all charts based on the selected neighborhood"""
     
     filtered_df = df[df["Neighbourhood"] == selected_neighbourhood]
-    
     # Histogram for days between scheduling and appointment
     days_fig = px.histogram(filtered_df, x="DaysBetween", nbins=20,
                             title=f"Days Between Reservation and Appointment in '{selected_neighbourhood}'",
@@ -153,8 +151,6 @@ def update_bar_chart(xVar):
         height=500, width=1300
     )
     return fig
-
-
 
 # Additional route to fetch data as JSON
 @server.route("/get_data")
